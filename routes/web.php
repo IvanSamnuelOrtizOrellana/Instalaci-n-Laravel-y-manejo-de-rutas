@@ -8,8 +8,7 @@ use App\Http\Controllers\ContactoController;
 Route::get('/', function () {   
     return view('welcome');
 });
-
-
+Route::get('/contacto',[ContactoController::class,'contacto']);
 Route::get('/hola-mundo', function () {
     return view('hola');
 });
@@ -17,4 +16,4 @@ Route::get('/hola-mundo', function () {
 Route::get('/', [ContactoController::class, 'formulario_contacto']);
 
 // 3. Ruta POST: A donde el formulario envía los datos (gracias al action="/recibe-formulario")
-Route::post('/recibe-formulario', [ContactoController::class, 'recibe_formulario']);
+Route::post('/recibe-formulario', [ContactoController::class, 'formulario_contacto']);

@@ -3,18 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contacto;
 
 class ContactoController extends Controller
 {
-  
-    public function formulario_contacto() 
+  public function contacto()
+  {
+   return view('formulario-contacto'); 
+  }
+    public function formulario_contacto(Request $request) 
     {
-        return view('formulario-contacto'); 
+       
+       $validated =$request->validate([
+       'nombre' => 'required|min:5',
+       'correo' => 'required|email',
+       'mensaje'=> 'required|min:10'
+       ]);
+       Contacto::create($validated);
+       
+    return back()->with('success','formulario recibido');
+
     }
 
    
-    public function recibe_formulario() 
-    {
-        return "Formulario recibido"; 
-    }
 }
